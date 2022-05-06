@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 
 export function useCounter({ maxCount = 10 }) {
   const [counter, setCounter] = useState(0);
-  const counterElement = useRef<HTMLHeadingElement>(null);
+  const elementToAnimate = useRef<any>(null);
   const tl = useRef(gsap.timeline());
 
   const handlePlusClick = () => {
@@ -12,12 +12,12 @@ export function useCounter({ maxCount = 10 }) {
 
   useLayoutEffect(() => {
     tl.current
-      .to(counterElement.current, {
+      .to(elementToAnimate.current, {
         y: -10,
         duration: 0.2,
         ease: 'ease.out',
       })
-      .to(counterElement.current, {
+      .to(elementToAnimate.current, {
         y: 0,
         duration: 1,
         ease: 'bounce',
@@ -31,7 +31,7 @@ export function useCounter({ maxCount = 10 }) {
 
   return {
     counter,
-    counterElement,
+    elementToAnimate,
     handlePlusClick,
   };
 }
