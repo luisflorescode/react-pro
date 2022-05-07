@@ -30,6 +30,12 @@ const counterReducer = (
         previous: 0,
         changes: 0,
       };
+    case 'increaseBy':
+      return {
+        counter: state.counter + action.payload.value,
+        previous: state.counter,
+        changes: state.changes + 1,
+      };
 
     default:
       return state;
@@ -37,16 +43,24 @@ const counterReducer = (
 };
 
 export function CounterReducer() {
-  const [{ counter }, dispatch] = useReducer(counterReducer, INITIAL_STATE);
+  const [counterState, dispatch] = useReducer(counterReducer, INITIAL_STATE);
 
   const handleResetClick = () => {
     dispatch({ type: 'reset' });
   };
 
+  const increaseBy = (value: number) => {
+    dispatch({ type: 'increaseBy', payload: { value } });
+  };
+
   return (
     <>
-      <h1>Counter Reducer: {counter}</h1>
+      <h1>Counter Reducer</h1>
+      <pre>{JSON.stringify(counterState, null, 2)}</pre>
       <button onClick={handleResetClick}>reset</button>
+      <button onClick={() => increaseBy(1)}>+1</button>
+      <button onClick={() => increaseBy(5)}>+5</button>
+      <button onClick={() => increaseBy(10)}>+10</button>
     </>
   );
 }
