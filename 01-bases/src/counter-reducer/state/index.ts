@@ -1,4 +1,5 @@
-import { CounterAction, CounterState } from '../interfaces';
+import { CounterState } from '../interfaces';
+import { CounterAction } from '../actions';
 
 export const counterReducer = (
   state: CounterState,
