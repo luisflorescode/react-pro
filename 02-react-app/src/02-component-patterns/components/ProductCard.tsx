@@ -1,13 +1,9 @@
+import useProduct from '../hooks/useProduct';
 import styles from '../styles/styles.module.css';
 // import noImage from '../assets/no-image.png';
-import { useState } from 'react';
 
 export default function ProductCard() {
-  const [counter, setCounter] = useState(0);
-
-  const increaseBy = (value: number) => {
-    setCounter((prev) => Math.max(prev + value, 0));
-  };
+  const { counter, increaseBy } = useProduct();
 
   return (
     <div className={styles.productCard}>
