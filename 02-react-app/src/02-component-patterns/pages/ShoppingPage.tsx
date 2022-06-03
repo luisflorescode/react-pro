@@ -5,7 +5,10 @@ import {
   ProductImage,
   ProductTitle,
 } from '../components';
-import { Product } from '../interfaces/product-interfaces';
+import {
+  Product,
+  ProductCardOnChangeArgs,
+} from '../interfaces/product-interfaces';
 import '../styles/custom-styles.css';
 
 const product = {
@@ -31,8 +34,11 @@ export default function ShoppingPage() {
     [key: string]: ProductInCart;
   }>({});
 
-  const onProductCountChange = () => {
-    console.log('Hello');
+  const onProductCountChange = ({
+    count,
+    product,
+  }: ProductCardOnChangeArgs) => {
+    console.log('Hello', product, count);
   };
 
   return (
@@ -51,7 +57,7 @@ export default function ShoppingPage() {
             key={product.id}
             product={product}
             className="bg-dark text-white"
-            onChange={() => onProductCountChange()}
+            onChange={onProductCountChange}
           >
             <ProductImage
               className="custom-image"
@@ -67,7 +73,7 @@ export default function ShoppingPage() {
           product={product}
           className="bg-dark text-white"
           style={{ width: '100px' }}
-          onChange={() => onProductCountChange()}
+          onChange={onProductCountChange}
         >
           <ProductImage
             className="custom-image"
