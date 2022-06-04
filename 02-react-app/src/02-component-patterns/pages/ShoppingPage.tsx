@@ -38,7 +38,18 @@ export default function ShoppingPage() {
     count,
     product,
   }: ProductCardOnChangeArgs) => {
-    console.log('Hello', product, count);
+    setShoppingCart((oldShoppingCart) => {
+      if (!count) {
+        const { [product.id]: toDelete, ...rest } = oldShoppingCart;
+
+        return rest;
+      }
+
+      return {
+        ...oldShoppingCart,
+        [product.id]: { ...product, count },
+      };
+    });
   };
 
   return (
@@ -92,6 +103,9 @@ export default function ShoppingPage() {
           />
           <ProductButtons className="custom-buttons" />
         </ProductCard>
+      </div>
+      <div>
+        <code>{JSON.stringify(shoppingCart, null, 2)}</code>
       </div>
     </div>
   );
