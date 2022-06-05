@@ -80,32 +80,24 @@ export default function ShoppingPage() {
         ))}
       </div>
       <div className="shopping-cart">
-        <ProductCard
-          product={product}
-          className="bg-dark text-white"
-          style={{ width: '100px' }}
-          onChange={onProductCountChange}
-        >
-          <ProductImage
-            className="custom-image"
-            style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
-          />
-          <ProductButtons className="custom-buttons" />
-        </ProductCard>
-        <ProductCard
-          product={product2}
-          className="bg-dark text-white"
-          style={{ width: '100px' }}
-        >
-          <ProductImage
-            className="custom-image"
-            style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
-          />
-          <ProductButtons className="custom-buttons" />
-        </ProductCard>
-      </div>
-      <div>
-        <code>{JSON.stringify(shoppingCart, null, 2)}</code>
+        {Object.entries(shoppingCart).map(([key, product]) => (
+          <ProductCard
+            key={key}
+            product={product}
+            className="bg-dark text-white"
+            style={{ width: '100px' }}
+            onChange={onProductCountChange}
+          >
+            <ProductImage
+              className="custom-image"
+              style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
+            />
+            <ProductButtons
+              className="custom-buttons"
+              style={{ display: 'flex', justifyContent: 'center' }}
+            />
+          </ProductCard>
+        ))}
       </div>
     </div>
   );
