@@ -3,6 +3,7 @@ import useProduct from '../hooks/useProduct';
 import styles from '../styles/styles.module.css';
 import {
   Product,
+  ProductCardInitialValues,
   ProductCardOnChangeArgs,
   ProductContextProps,
 } from '../interfaces/product-interfaces';
@@ -17,6 +18,7 @@ export interface ProductCardProps {
   style?: CSSProperties;
   onChange?: (args: ProductCardOnChangeArgs) => void;
   value?: number;
+  initialValues?: ProductCardInitialValues;
 }
 
 export default function ProductCard({
@@ -26,8 +28,14 @@ export default function ProductCard({
   style,
   onChange,
   value,
+  initialValues,
 }: ProductCardProps) {
-  const { counter, increaseBy } = useProduct({ onChange, product, value });
+  const { counter, increaseBy } = useProduct({
+    onChange,
+    product,
+    value,
+    initialValues,
+  });
 
   return (
     <Provider value={{ counter, increaseBy, product }}>

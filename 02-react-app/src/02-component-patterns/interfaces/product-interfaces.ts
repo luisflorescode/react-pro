@@ -27,6 +27,11 @@ export interface ProductCardOnChangeArgs {
   count: number;
 }
 
+export interface ProductCardInitialValues {
+  count?: number;
+  maxCount?: number;
+}
+
 export interface ProductInCart extends Product {
   count: number;
 }
