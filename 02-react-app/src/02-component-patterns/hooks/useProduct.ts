@@ -22,7 +22,10 @@ export default function useProduct({
   const isMounted = useRef(false);
 
   const increaseBy = (value: number) => {
-    const newValue = Math.max(counter + value, 0);
+    const sum = initialValues?.maxCount
+      ? Math.min(counter + value, initialValues.maxCount)
+      : counter + value;
+    const newValue = Math.max(sum, 0);
     setCounter(newValue);
     onChange && onChange({ count: newValue, product });
   };
