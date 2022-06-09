@@ -23,12 +23,24 @@ export default function ShoppingPage() {
           maxCount: 10,
         }}
       >
-        <ProductImage
-          className="custom-image"
-          style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
-        />
-        <ProductTitle className="text-bold" />
-        <ProductButtons className="custom-buttons" />
+        {({ reset, increaseBy, isMaxCountReached, count, maxCount }) => (
+          <>
+            <ProductImage
+              className="custom-image"
+              style={{ boxShadow: '10px 10px 10px rgba(0, 0, 0, 0.2)' }}
+            />
+            <ProductTitle className="text-bold" />
+            <ProductButtons className="custom-buttons" />
+            {!!count && <button onClick={() => increaseBy(-2)}>-2</button>}
+            <button onClick={reset}>Reset</button>
+            {!isMaxCountReached && (
+              <button onClick={() => increaseBy(2)}>+2</button>
+            )}
+            <span>
+              {count} - {maxCount}
+            </span>
+          </>
+        )}
       </ProductCard>
     </div>
   );
